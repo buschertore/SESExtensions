@@ -1,0 +1,1 @@
+/home/codescan/RobloxURLLauncher/script.js:48:32:warning(detect-eval-with-expression):		const interval = setInterval(() => {:Detected use of dynamic execution of JavaScript which may come from user-input, which can lead to Cross-Site-Scripting (XSS). Where possible avoid including user-input in functions which dynamically execute user-input.

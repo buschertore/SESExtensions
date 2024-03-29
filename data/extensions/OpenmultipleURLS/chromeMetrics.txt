@@ -1,0 +1,2 @@
+NumberOfUsers: 600000
+isRecommended: 1

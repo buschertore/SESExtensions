@@ -1,0 +1,1 @@
+/home/codescan/avim-chrome/src/chrome/popup.js:22:4:error(insecure-document-method):			$g("txt" + keys[k]).innerHTML = getI18n("extPopup" + keys[k]);:User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern that can lead to XSS vulnerabilities
