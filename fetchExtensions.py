@@ -65,7 +65,7 @@ def testExtensionForGitHub(linkToChromeStore):
         return ""
 
 def filterExtensionListForGitHub(extensionLinkList):
-    logging.info(f"Call to filter for github with a list len of: {len(extensionLinkList)}")
+    logging.warning(f"Call to filter for github with a list len of: {len(extensionLinkList)}")
 
     with Pool(processes=6) as pool:
         allReturns = pool.map(testExtensionForGitHub, extensionLinkList)
@@ -75,6 +75,7 @@ def filterExtensionListForGitHub(extensionLinkList):
     #Filtering empty returns:
     actualReturns = [linkTuple for linkTuple in allReturns if linkTuple]
     logging.info(f"Actual returns were: {actualReturns}")
+    logging.warning(f"Found {len(actualReturns)} OSS extensions from {len(extensionLinkList)} tested extensions")
 
     return actualReturns
 
@@ -90,7 +91,7 @@ def analyzeCategory(link):
             time.sleep(1)
             loadMoreCount += 1
         except selenium.common.NoSuchElementException as e:
-            logging.info(e)
+            logging.debug(e)
     time.sleep(1)
     logging.info("Finished loading more extensions in category")
     allExtensionElementWrappers = driver.find_elements(By.CLASS_NAME, "cD9yc")
@@ -117,7 +118,7 @@ def main(args):
 
 
     logging.basicConfig(level=logging.INFO)
-    logging.info(f"Started running at: {time.ctime()}")
+    logging.warning(f"Started running at: {time.ctime()}")
     #Get activityPage
     for categoryList in categoryLists:
         for categoryLink in categoryList:
@@ -128,7 +129,7 @@ def main(args):
     #logging.info(f'Result is = {testExtensionForGitHub("https://chromewebstore.google.com/detail/requestly-intercept-modif/mdnleldcmiljblolnjhpnblkcekpdkpa")}')
 
 
-    logging.info(f"Ended at {time.ctime()}")
+    logging.warning(f"Ended at {time.ctime()}")
 
 if __name__ == "__main__":
     main(sys.argv[1:])
