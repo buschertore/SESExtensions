@@ -76,6 +76,8 @@ def filterExtensionListForGitHub(extensionLinkList):
     actualReturns = [linkTuple for linkTuple in allReturns if linkTuple]
     logging.info(f"Actual returns were: {actualReturns}")
 
+    return actualReturns
+
 def analyzeCategory(link):
     driver = utils.setUpWebdriver()
     driver.get(link)
@@ -102,7 +104,12 @@ def analyzeCategory(link):
         logging.debug(f"Found extension link {extensionLink}")
         allExtensionLinks.append(extensionLink)
 
-    filterExtensionListForGitHub(allExtensionLinks)
+    linkTuples = filterExtensionListForGitHub(allExtensionLinks)
+    #TODO save
+    with open(f"data/{link[55:]}SuggestedLinks".replace("/", "")) as outFile:
+        for linkTuple in LinkTuples:
+            outFile.write(f"{linkTuple[0].split('/')[-1]}, {linkTuple[0]},,{linkTuple[0]}")
+
 
 
 def main(args):
