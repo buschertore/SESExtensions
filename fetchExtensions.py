@@ -105,9 +105,10 @@ def analyzeCategory(link):
         allExtensionLinks.append(extensionLink)
 
     linkTuples = filterExtensionListForGitHub(allExtensionLinks)
-    #TODO save
+
+    #Store found extensions
     with open(f"data/{link[55:]}SuggestedLinks".replace("/", "")) as outFile:
-        for linkTuple in LinkTuples:
+        for linkTuple in linkTuples:
             outFile.write(f"{linkTuple[0].split('/')[-1]}, {linkTuple[0]},,{linkTuple[0]}")
 
 
