@@ -59,6 +59,7 @@ def testExtensionForGitHub(linkToChromeStore):
         gitHubLink = ""
     logging.info(f"Found link: {gitHubLink}")
 
+    driver.close()
     if gitHubLink:
         return [linkToChromeStore, gitHubLink]
     else:
@@ -105,6 +106,7 @@ def analyzeCategory(link):
         logging.debug(f"Found extension link {extensionLink}")
         allExtensionLinks.append(extensionLink)
 
+    driver.close()
     linkTuples = filterExtensionListForGitHub(allExtensionLinks)
 
     #Store found extensions
