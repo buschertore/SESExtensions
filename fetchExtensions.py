@@ -33,9 +33,9 @@ categoryListLifestyle = [
 
 # Productivity
 categoryListProductivity = [
-    "https://chromewebstore.google.com/category/extensions/productivity/developer",
-    "https://chromewebstore.google.com/category/extensions/productivity/communication",
-    "https://chromewebstore.google.com/category/extensions/productivity/education",
+    #"https://chromewebstore.google.com/category/extensions/productivity/developer",
+    #"https://chromewebstore.google.com/category/extensions/productivity/communication",
+    #"https://chromewebstore.google.com/category/extensions/productivity/education",
     "https://chromewebstore.google.com/category/extensions/productivity/tools",
     "https://chromewebstore.google.com/category/extensions/productivity/workflow"
 ]
@@ -50,7 +50,11 @@ def testExtensionForGitHub(linkToChromeStore):
     driver.get(linkToChromeStore)
     time.sleep(0.5)
     #text = driver.find_element(By.XPATH, '//span[@jsname="bN97Pc"]').text
-    text = driver.find_element(By.CLASS_NAME, "uORbKe").text
+    try:
+        text = driver.find_element(By.CLASS_NAME, "uORbKe").text
+    except Exception as e:
+        logging.error(f"Encountered Issue with extension: {linkToChromeStore}: {e}")
+
     logging.debug(f"Found description: {text}")
     try:
         match = re.search("github\.com\/[\S]+", text)
