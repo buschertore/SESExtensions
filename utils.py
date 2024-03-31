@@ -24,6 +24,14 @@ class ExtensionScore:
     starRating: float
     manualWorkNeeded: str
 
+@dataclass_json
+@dataclasses.dataclass
+class extensionCSVRow:
+    name: str
+    chromeLink: str
+    gitHubLink: str
+
+
 def setUpWebdriver():
     options = webdriver.ChromeOptions()
     options.add_experimental_option("detach", True)

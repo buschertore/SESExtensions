@@ -117,7 +117,7 @@ def analyzeCategory(link):
     #Store found extensions
     with open(f"data/{link.replace('/', '')[49:]}SuggestedLinks.csv", "w") as outFile:
         for linkTuple in linkTuples:
-            outFile.write(f"{linkTuple[0].split('/')[-1]}, {linkTuple[0]},,{linkTuple[0]}\n")
+            outFile.write(f"{linkTuple[0].split('/')[-1]}, {linkTuple[0]},,{linkTuple[1]}\n")
 
 
 
