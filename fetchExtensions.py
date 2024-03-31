@@ -54,6 +54,7 @@ def testExtensionForGitHub(linkToChromeStore):
         text = driver.find_element(By.CLASS_NAME, "uORbKe").text
     except Exception as e:
         logging.error(f"Encountered Issue with extension: {linkToChromeStore}: {e}")
+        text = ""
 
     logging.debug(f"Found description: {text}")
     try:
@@ -72,7 +73,7 @@ def testExtensionForGitHub(linkToChromeStore):
 def filterExtensionListForGitHub(extensionLinkList):
     logging.warning(f"Call to filter for github with a list len of: {len(extensionLinkList)}")
 
-    with Pool(processes=6) as pool:
+    with Pool(processes=12) as pool:
         allReturns = pool.map(testExtensionForGitHub, extensionLinkList)
 
     logging.info(allReturns)
@@ -126,10 +127,13 @@ def main(args):
     logging.basicConfig(level=logging.INFO)
     logging.warning(f"Started running at: {time.ctime()}")
     #Get activityPage
-    for categoryList in categoryLists:
+    for categoryList in [categoryListCustom, categoryListLifestyle]:
         for categoryLink in categoryList:
             #
-            analyzeCategory(categoryLink)
+            try:
+                analyzeCategory(categoryLink)
+            except Exception as e:
+                logging.error(f"Encountered issue with category {categoryLink}: {e}")
 
 
     #githubTuple = testExtensionForGitHub("https://chromewebstore.google.com/detail/rogold-level-up-roblox/mafcicncghogpdpaieifglifaagndbni")
