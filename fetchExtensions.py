@@ -86,7 +86,7 @@ def analyzeCategory(link):
     time.sleep(5)
     logging.info(f"Loaded page for {link}")
     loadMoreCount = 0
-    while loadMoreCount < 10:
+    while loadMoreCount < 16:
         try:
             driver.find_element(By.CLASS_NAME, "mUIrbf-LgbsSe-OWXEXe-dgl2Hf").click()
             time.sleep(1)
@@ -110,7 +110,7 @@ def analyzeCategory(link):
     linkTuples = filterExtensionListForGitHub(allExtensionLinks)
 
     #Store found extensions
-    with open(f"data/{link[55:]}SuggestedLinks".replace("/", "")) as outFile:
+    with open(f"data/{link.replace('/', '')[49:]}SuggestedLinks.csv", "w") as outFile:
         for linkTuple in linkTuples:
             outFile.write(f"{linkTuple[0].split('/')[-1]}, {linkTuple[0]},,{linkTuple[0]}")
 
@@ -124,7 +124,9 @@ def main(args):
     #Get activityPage
     for categoryList in categoryLists:
         for categoryLink in categoryList:
+            #
             analyzeCategory(categoryLink)
+
 
     #githubTuple = testExtensionForGitHub("https://chromewebstore.google.com/detail/rogold-level-up-roblox/mafcicncghogpdpaieifglifaagndbni")
     #logging.info(f'Result is = {githubTuple}')
