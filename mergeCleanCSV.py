@@ -1,4 +1,5 @@
 import logging
+import os
 import sys
 import time
 from typing import List
@@ -10,7 +11,7 @@ from utils import extensionCSVRow
 
 def readAllUniqueCSVs() -> []:
     # Read all extension Csvs
-    csvList = ["extensionList.csv",
+    """    csvList = ["extensionList.csv",
                # "data/make_chrome_yoursaccessibilitySuggestedLinks.csv",
                # "data/make_chrome_yoursfunctionalitySuggestedLinks.csv",
                # "data/make_chrome_yoursprivacySuggestedLinks.csv",
@@ -19,13 +20,14 @@ def readAllUniqueCSVs() -> []:
                "data/productivityeducationSuggestedLinks.csv",
                "data/productivitytoolsSuggestedLinks.csv",
                # "data/productivityworkflowSuggestedLinks.csv"
-               ]
+               ]"""
 
     allRows = []
     allChromeLinks = []
 
-    for csvFile in csvList:
-        with open(csvFile, "r") as inFile:
+    for csvFile in os.listdir("data/CSVs"):
+        logging.info(f"file = {csvFile}")
+        with open(f"data/CSVs/{csvFile}", "r") as inFile:
             for row in inFile.readlines():
                 try:
                     chromeLink = row.split(",")[1]
@@ -74,8 +76,21 @@ def filterRows(rows: List[extensionCSVRow]) -> List[extensionCSVRow]:
         for ending in possibleEndings:
             newGitHubLink = newGitHubLink.strip().removesuffix(ending)
         logging.info(f"Appending {newGitHubLink} from {row.gitHubLink}")
+
+        try:
+            firstSlashIndex = newGitHubLink.index("/")
+            secondSlashIndex = newGitHubLink[firstSlashIndex + 1:].index("/") + firstSlashIndex + 1
+            thirdSlashIndex = newGitHubLink[secondSlashIndex + 1:].index("/") + secondSlashIndex + 1
+            newGitHubLink = newGitHubLink[:thirdSlashIndex]
+            logging.info(f"Cut {newGitHubLink}, was {row.gitHubLink}")
+        except ValueError:
+            logging.debug(f"No third slash found in {newGitHubLink}")
+
+        if newGitHubLink.count("/") != 2:
+            logging.warning(f"Bad Link_: {newGitHubLink} was omitted")
+            continue
+
         newRows.append(extensionCSVRow(name=row.name, chromeLink=row.chromeLink, gitHubLink=newGitHubLink))
-        # logging.info(gitHubLink)
 
     return newRows
 

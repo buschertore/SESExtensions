@@ -1,1 +1,0 @@
-/home/codescan/Webpilot/src/contents/signInListener.ts:20:1:warning(insufficient-postmessage-origin-validation):window.addEventListener('message', handleMessage):No validation of origin is done by the addEventListener API. It may be possible to exploit this flaw to perform Cross Origin attacks such as Cross-Site Scripting(XSS).

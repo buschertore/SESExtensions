@@ -1,3 +1,0 @@
-Average time between commits:16.2
-# of major contributors:10
-# of non-major contributors:15

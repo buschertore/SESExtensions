@@ -1,1 +1,0 @@
-/home/codescan/chrome-video-speed-controller/js/main.js:107:5:error(insecure-document-method):    homePageLink.innerHTML = `<img class="seudev" src="${chrome.extension.getURL("img/seudev-negative-icon-64px-61px.png")}">`;:User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern that can lead to XSS vulnerabilities
