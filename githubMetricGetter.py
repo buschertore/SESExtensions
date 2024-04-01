@@ -67,15 +67,15 @@ def findMajorContributors(allCommitCounts):
 
 
 def getContributors(driver, link):
-    contributorLinks = getContribLinkandWait(driver, link, 4)
+    contributorLinks = getContribLinkandWait(driver, link, 5)
     if len(contributorLinks) != 0:
         logging.info(f"Found {len(contributorLinks)} after 7.5")
         return contributorLinks
-    contributorLinks = getContribLinkandWait(driver, link, 11)
+    contributorLinks = getContribLinkandWait(driver, link, 15)
     if len(contributorLinks) != 0:
         logging.info(f"Found {len(contributorLinks)} after 15")
         return contributorLinks
-    contributorLinks = getContribLinkandWait(driver, link, 30)
+    contributorLinks = getContribLinkandWait(driver, link, 40)
     if len(contributorLinks) == 0:
         return ""
     logging.info(f"Found {len(contributorLinks)} after 30")
@@ -102,7 +102,7 @@ def main(argv):
     activityLink = f"{link}activity"
 
     #Setup webdriver
-    logging.basicConfig(level=logging.WARNING)
+    logging.basicConfig(level=logging.INFO)
     options = webdriver.ChromeOptions()
     options.add_experimental_option("detach", True)
     options.add_argument("--headless")
@@ -143,7 +143,7 @@ def main(argv):
     logging.info(f"Found {len(contributorLinks)} contribs")
     commitNumbers = [int(link.text.split("commit")[0].strip().replace(",", "")) for link in contributorLinks]
     majorContributors = findMajorContributors(commitNumbers)
-    logging.warning(f"found {majorContributors} major contributors")
+    logging.info(f"found {majorContributors} major contributors")
 
     driver.close()
     # write results
