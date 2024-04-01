@@ -33,10 +33,10 @@ categoryListLifestyle = [
 
 # Productivity
 categoryListProductivity = [
-    "https://chromewebstore.google.com/category/extensions/productivity/developer",
-    "https://chromewebstore.google.com/category/extensions/productivity/communication",
-    "https://chromewebstore.google.com/category/extensions/productivity/education",
-    "https://chromewebstore.google.com/category/extensions/productivity/tools",
+    #"https://chromewebstore.google.com/category/extensions/productivity/developer",
+    #"https://chromewebstore.google.com/category/extensions/productivity/communication",
+    #"https://chromewebstore.google.com/category/extensions/productivity/education",
+    #"https://chromewebstore.google.com/category/extensions/productivity/tools",
     "https://chromewebstore.google.com/category/extensions/productivity/workflow"
 ]
 
@@ -124,10 +124,10 @@ def analyzeCategory(link):
 def main(args):
 
 
-    logging.basicConfig(level=logging.INFO)
+    logging.basicConfig(level=logging.WARNING)
     logging.warning(f"Started running at: {time.ctime()}")
     #Get activityPage
-    for categoryList in [categoryListCustom, categoryListLifestyle]:
+    for categoryList in categoryLists:
         for categoryLink in categoryList:
             #
             try:
