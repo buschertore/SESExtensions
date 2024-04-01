@@ -80,13 +80,22 @@ def processRow(row):
 
 
 def callProcessRow(rowAndNum):
-    row, num = rowAndNum
-    with open("data/doneExtensions.csv", "r") as done:
-        if row not in done:
-            processRow(row)
-            with open("data/doneExtensions.csv", "a") as log:
-                log.write(row)
-    logging.info(f"processed row {num}")
+    try:
+        row, num = rowAndNum
+    except Exception as e:
+        logging.error(f"Failed to UNPACK: {rowAndNum}")
+        row = "Error"
+        num = 0
+    try:
+
+        with open("data/doneExtensions.csv", "r") as done:
+            if row not in done:
+                processRow(row)
+                with open("data/doneExtensions.csv", "a") as log:
+                    log.write(row)
+        logging.info(f"processed row {num}")
+    except Exception as e:
+        logging.error(f"Error with row: {row.strip()}: {e}")
 
 
 def main():
