@@ -105,7 +105,7 @@ def main():
 
 
     allArgs = [(row, num) for num, row in enumerate(rows)]
-    with Pool(processes=24) as pool:
+    with Pool(processes=48) as pool:
         pool.map(callProcessRow, allArgs)
 
 if __name__ == "__main__":
