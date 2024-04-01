@@ -2,6 +2,8 @@ import os
 import subprocess
 import logging
 import time
+from multiprocessing import Pool
+
 import githubMetricGetter
 import ChromeReviews
 #import FastFireFoxReviews
@@ -14,18 +16,18 @@ def getReviews(chromeLink: str, firefoxLink: str, name: str) -> None:
         pass
 
     if chromeLink != "":
-        ChromeReviews.main([f"{chromeLink}/reviews", f"data/{name}/chromeReviews.json"])
+        ChromeReviews.main([f"{chromeLink}/reviews", f"data/extensions/{name}/chromeReviews.json"])
 
 def getPermissions(chromeLink: str, firefoxLink: str, name: str) -> None:
     if chromeLink != "":
-        chromePermissions.main([chromeLink, f"/home/codescan/data/{name}/manifest.json"])
+        chromePermissions.main([chromeLink, f"/home/codescan/data/extensions/{name}/manifest.json"])
 
 def processRow(row):
     logging.debug(f"{row} splits into {row.split(',')}")
     dataDirName, chromeLink, firefoxLink, githubLink = row.split(",")
 
     #Setup data dir
-    os.popen(f"mkdir data/{dataDirName}")
+    os.popen(f"mkdir data/extensions/{dataDirName}")
 
     logging.info("Running git clone...")
     #clone git for analysis
@@ -51,7 +53,7 @@ def processRow(row):
     semgrepProc = subprocess.run(command.split(" "), stderr=subprocess.PIPE, stdout=subprocess.PIPE)
     semgrepOutput = semgrepProc.stdout.decode() + semgrepProc.stderr.decode()
     logging.info(f"semgrep out length = {len(semgrepOutput)}")
-    with open (f"data/{dataDirName}/semgrep.txt", "w") as out:
+    with open (f"data/extensions/{dataDirName}/semgrep.txt", "w") as out:
         out.write(semgrepOutput)
     logging.info("done with semgrep, running owasp dc...")
 
@@ -59,23 +61,25 @@ def processRow(row):
     #run owasp check & copy result file
     os.popen("cd /home/codescan/")
     os.popen(f"~/dependency-check/bin/dependency-check.sh -s ./{codeDirName}").read()
-    os.popen(f"mv ./dependency-check-report.html data/{dataDirName}")
+    os.popen(f"mv ./dependency-check-report.html data/extensions/{dataDirName}")
     logging.info("owasp dc done, cleaning up...")
     os.popen(f"rm -r {codeDirName}/")
     resetDir = os.popen("cd /home/codescan")
     logging.debug(resetDir.readlines())
 
     # Get necessary info about permissions
-    getReviews(chromeLink=chromeLink, firefoxLink=firefoxLink, name=dataDirName)
-    with open(f"data/{dataDirName}/starRating.txt", "w") as ratingFile:
+    #getReviews(chromeLink=chromeLink, firefoxLink=firefoxLink, name=dataDirName)
+    with open(f"data/extensions/{dataDirName}/starRating.txt", "w") as ratingFile:
         ratingFile.write(str(ChromeReviews.fetchStarRating(chromeLink=chromeLink)))
     getPermissions(chromeLink=chromeLink, firefoxLink=firefoxLink, name=dataDirName)
 
     # Get GitHub Metrics
-    githubMetricGetter.main([githubLink, f"data/{dataDirName}/gitHubMetrics.txt"])
+    githubMetricGetter.main([githubLink, f"data/extensions/{dataDirName}/gitHubMetrics.txt"])
 
 
-
+def callProcessRow(row, num):
+    processRow(row)
+    logging.info(f"processed row {num}")
 
 
 
@@ -83,7 +87,7 @@ def main():
 
     logging.basicConfig(level=logging.INFO)
 
-    with open("extensionList.csv") as list:
+    with open("data/mergedCSV.csv") as list:
         rows = list.readlines()
 
     # drop header row
@@ -93,10 +97,13 @@ def main():
     logging.info(f"Found {len(rows)} rows")
     logging.debug(f"{rows[0].split(',')}")
 
-    for num, row in enumerate(rows):
-        processRow(row)
-        logging.info(f"processed row {num}")
 
+    allArgs = []
+    for num, row in enumerate(rows):
+        allArgs.append((row, num))
+
+    with Pool(processes=4) as pool:
+        pool.map(callProcessRow, allArgs)
 
 if __name__ == "__main__":
     main()

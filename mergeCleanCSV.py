@@ -5,27 +5,34 @@ from typing import List
 
 from utils import extensionCSVRow
 
+
 #
 
-def readAllCSVs() -> []:
+def readAllUniqueCSVs() -> []:
     # Read all extension Csvs
-    csvList = ["data/make_chrome_yoursaccessibilitySuggestedLinks.csv",
-               "data/make_chrome_yoursfunctionalitySuggestedLinks.csv",
-               "data/make_chrome_yoursprivacySuggestedLinks.csv",
+    csvList = ["extensionList.csv",
+               # "data/make_chrome_yoursaccessibilitySuggestedLinks.csv",
+               # "data/make_chrome_yoursfunctionalitySuggestedLinks.csv",
+               # "data/make_chrome_yoursprivacySuggestedLinks.csv",
                "data/productivitycommunicationSuggestedLinks.csv",
                "data/productivitydeveloperSuggestedLinks.csv",
                "data/productivityeducationSuggestedLinks.csv",
                "data/productivitytoolsSuggestedLinks.csv",
-               "data/productivityworkflowSuggestedLinks.csv"
+               # "data/productivityworkflowSuggestedLinks.csv"
                ]
 
     allRows = []
+    allChromeLinks = []
 
     for csvFile in csvList:
         with open(csvFile, "r") as inFile:
             for row in inFile.readlines():
                 try:
-                    allRows.append(extensionCSVRow(name=row.split(",")[1].split("/")[-2], chromeLink=row.split(",")[1], gitHubLink=row.split(",")[3]))
+                    chromeLink = row.split(",")[1]
+                    if chromeLink not in allChromeLinks:
+                        allRows.append(extensionCSVRow(name=row.split(",")[1].split("/")[-2], chromeLink=chromeLink,
+                                                       gitHubLink=row.split(",")[3]))
+                        allChromeLinks.append(chromeLink)
                 except Exception as e:
                     logging.warning(f"")
 
@@ -35,29 +42,58 @@ def readAllCSVs() -> []:
 def filterRows(rows: List[extensionCSVRow]) -> List[extensionCSVRow]:
     newRows = []
     for row in rows:
-        #logging.info(row.gitHubLink)
-        #gitHubLinkParts = row.chromeLink.split("/")
-        #gitHubLink = "".join(gitHubLinkParts[:2])
-        newRows.append(extensionCSVRow(name=row.name, chromeLink=row.chromeLink, gitHubLink=row.gitHubLink))
-        #logging.info(gitHubLink)
+        row.gitHubLink = row.gitHubLink.removeprefix("https://").strip()
+        # skip unclean rows
+        if row.chromeLink.strip() in [
+            "https://chromewebstore.google.com/detail/github-sidebar/lblnbldblpeiikndppnekobccdocccho",
+        ] \
+                or row.gitHubLink.strip() in ["github.com/ericuldall", "github.com/users"]:
+            continue
+
+        # Cleanup appendices
+        newGitHubLink = row.gitHubLink.strip()
+        possibleEndings = ["/issues", "/", ".", "blob/master/README.md", "/releases", ").",
+                           "/tree/main/packages/extension#getting-started", "/wiki/Features",
+                           "/blob/master/README.md#content", ")", "/blob/master/privacy-policy.md",
+                           "/tree/main/code-review-emoji-guide.", "/blob/9e1f59/mux.go", "#how-to-contribute",
+                           "/issues/17256;", "/issues/new/choose", "/issues/8", "/wiki", "#readme",
+                           "/blob/master/LICENSE.md", "/blob/master/CHANGELOG.md", "/blob/master/LICENSE.md",
+                           "/tree/main/code-review-emoji-guide",
+                           "/issues/new?assignees=da-stoi&labels=URL+Add+Request&projects=&template=url-add-request.md&title=URL+Add+Request",
+                           "/blob/main/CHANGELOG.md", ]
+
+        if row.gitHubLink.strip() == "github.com/tulios":
+            newGitHubLink = "github.com/tulios/json-viewer"
+        if row.gitHubLink.strip() == "github.com/FlowCrypt":
+            newGitHubLink = "github.com/FlowCrypt/flowcrypt-browser"
+        if row.gitHubLink.strip() == "github.com/4thtech/static-assets/raw/main/pdf/licence.pdf":
+            newGitHubLink = "github.com/4thtech/encryptor-extension"
+        if row.gitHubLink.strip() == "github.com/abbeycampbell":
+            newGitHubLink = "github.com/KabaLabs/Cypress-Recorder"
+
+        for ending in possibleEndings:
+            newGitHubLink = newGitHubLink.strip().removesuffix(ending)
+        logging.info(f"Appending {newGitHubLink} from {row.gitHubLink}")
+        newRows.append(extensionCSVRow(name=row.name, chromeLink=row.chromeLink, gitHubLink=newGitHubLink))
+        # logging.info(gitHubLink)
 
     return newRows
 
+
 def main(args):
-
-
     logging.basicConfig(level=logging.INFO)
     logging.warning(f"Started running at: {time.ctime()}")
 
-    allRawRows = readAllCSVs()
+    allRawRows = readAllUniqueCSVs()
     allRows = filterRows(allRawRows)
-    logging.info(f"Found {len(allRawRows)} extensions")
+    logging.info(f"Found {len(allRawRows)} extensions, {len(allRows)} remain")
 
     with open("data/mergedCSV.csv", "w") as out:
         for row in allRows:
-            out.write(f"{row.name},{row.chromeLink},,{row.gitHubLink}")
+            out.write(f"{row.name},{row.chromeLink},,{row.gitHubLink}\n")
 
     logging.warning(f"Ended at {time.ctime()}")
+
 
 if __name__ == "__main__":
     main(sys.argv[1:])
