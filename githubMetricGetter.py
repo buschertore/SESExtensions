@@ -10,6 +10,8 @@ import logging
 
 
 def checkLink(link: str) -> str:
+    if not link.startswith('https://'):
+        link = f'https://{link}'
     if not link.startswith('https://github.com'):
         raise TypeError('Not a github link')
     if not link.endswith('/'):
@@ -100,7 +102,7 @@ def main(argv):
     activityLink = f"{link}activity"
 
     #Setup webdriver
-    logging.basicConfig(level=logging.INFO)
+    logging.basicConfig(level=logging.WARNING)
     options = webdriver.ChromeOptions()
     options.add_experimental_option("detach", True)
     options.add_argument("--headless")
@@ -134,14 +136,14 @@ def main(argv):
 
     #get contributors
     contribLink = f"{link}graphs/contributors".replace("\n", "").replace(" ", "")
-    logging.info(f"contribLink: {contribLink}")
+    logging.debug(f"contribLink: {contribLink}")
 
     contributorLinks = getContributors(driver=driver, link=contribLink)
 
     logging.info(f"Found {len(contributorLinks)} contribs")
     commitNumbers = [int(link.text.split("commit")[0].strip().replace(",", "")) for link in contributorLinks]
     majorContributors = findMajorContributors(commitNumbers)
-    logging.info(f"found {majorContributors} major contributors")
+    logging.warning(f"found {majorContributors} major contributors")
 
     driver.close()
     # write results

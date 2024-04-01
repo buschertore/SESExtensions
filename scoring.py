@@ -130,18 +130,20 @@ def readChromeMetrics(chromeMetricFile: str) -> []:
     return [numberOfUsers, recommended]
 
 
-
 def main(argv):
     logging.basicConfig(level=logging.INFO)
 
     # get list of all directories to scan
     # TODO change folder
-    subfolders = [f.path for f in os.scandir("data/") if f.is_dir()]
+    subfolders = [f.path for f in os.scandir("data/extensions") if f.is_dir()]
     #allExtensionScores = []
     allLines = []
     for subfolder in subfolders:
         manualWork = "no"
         name = subfolder.split("/")[-1]
+
+
+
         try:
             owaspRaw = scoreOwaspDC(f"{subfolder}/dependency-check-report.html")
             owaspPenalty = min(40, owaspRaw)

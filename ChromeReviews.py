@@ -77,7 +77,8 @@ def fetchStarRating(chromeLink: str) -> float:
     score = scoreElement.text
     logging.info(f"Fetched star rating: {score}")
     driver.close()
-
+    if score == "":
+        score = -1
     return float(score)
 
 

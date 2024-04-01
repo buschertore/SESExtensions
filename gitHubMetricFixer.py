@@ -10,7 +10,7 @@ import githubMetricGetter
 def relaunchGitHubMetrics(args):
     extensionName, link = args
     try:
-        with open(f"data/{extensionName}/gitHubMetrics.txt") as inFile:
+        with open(f"data/extensions/{extensionName}/gitHubMetrics.txt") as inFile:
             commitTimeString = inFile.readline().split(":")[-1]
             #commitTime = float(commitTimeString)
             majorContributorsString = inFile.readline().split(":")[-1]
@@ -19,17 +19,17 @@ def relaunchGitHubMetrics(args):
         majorContributors = 0
     if(majorContributors == 0):
         print(f"Regathering github for {extensionName}")
-        os.popen(f"rm data/{extensionName}/gitHubMetrics.txt")
+        os.popen(f"rm data/extensions/{extensionName}/gitHubMetrics.txt")
         try:
-            githubMetricGetter.main([link, f"data/{extensionName}/gitHubMetrics.txt"])
-        except Exception:
-            print(f"No file for {extensionName}")
+            githubMetricGetter.main([link, f"data/extensions/{extensionName}/gitHubMetrics.txt"])
+        except Exception as e:
+            print(f"No file for {extensionName}: {e}")
 
 
 def relaunchChromeStoreRatings(listOfDirAndLink) -> None:
     extensionName, chromeLink = listOfDirAndLink
     try:
-        with open(f"data/{extensionName}/chromeMetrics.txt") as inFile:
+        with open(f"data/extensions/{extensionName}/chromeMetrics.txt") as inFile:
             oldUserNumber = inFile.readline().split(":")[-1]
             recommended = inFile.readline().split(":")[-1]
     except FileNotFoundError:
@@ -40,11 +40,14 @@ def relaunchChromeStoreRatings(listOfDirAndLink) -> None:
         print(f"Regetting chrome metrics for {extensionName}: {chromeLink}")
         numberOfUsers, recommended = ChromeReviews.fetchChromeRatings(chromeLink)
         print(f"Number of users: {numberOfUsers}, recommended: {recommended}")
-        if os.path.exists(f"data/{extensionName}/chromeMetrics.txt"):
-            os.remove(f"data/{extensionName}/chromeMetrics.txt")
-        with open(f"data/{extensionName}/chromeMetrics.txt", "w") as outFile:
+        if os.path.exists(f"data/extensions/{extensionName}/chromeMetrics.txt"):
+            os.remove(f"data/extensions/{extensionName}/chromeMetrics.txt")
+        with open(f"data/extensions/{extensionName}/chromeMetrics.txt", "w") as outFile:
             outFile.write(f"NumberOfUsers: {numberOfUsers}\n")
             outFile.write(f"isRecommended: {recommended}\n")
+    else:
+        #print(f"Skipping chrome store for {extensionName}")
+        pass
 
 
 
@@ -52,9 +55,9 @@ def relaunchChromeStoreRatings(listOfDirAndLink) -> None:
 
 def main(argv):
 
-    subfolders = [f.name for f in os.scandir("data/") if f.is_dir()]
+    subfolders = [f.name for f in os.scandir("data/extensions") if f.is_dir()]
 
-    with open("extensionList.csv") as list:
+    with open("data/doneExtensions.csv") as list:
         rows = list.readlines()
         rows = rows[1:]
     gitHubLinkDict = {}
@@ -65,7 +68,7 @@ def main(argv):
         chromeLinkDict[dataDirName] = chromeLink
 
     args_list = [(subfolder, gitHubLinkDict[subfolder]) for subfolder in subfolders]
-    with Pool(processes=100) as pool:
+    with Pool(processes=24) as pool:
         pool.map(relaunchGitHubMetrics, args_list)
 
 

@@ -87,12 +87,22 @@ def callProcessRow(rowAndNum):
         row = "Error"
         num = 0
     try:
-
+        needsDownload = False
         with open("data/doneExtensions.csv", "r") as done:
             if row not in done:
-                processRow(row)
-                with open("data/doneExtensions.csv", "a") as log:
-                    log.write(row)
+                needsDownload = True
+        logging.info(f"Checking: data/extensions/{row.split(',')[0]}")
+        if not os.path.exists(f"data/extensions/{row.split(',')[0]}"):
+            needsDownload = True
+
+            logging.info(f" TRUE Redownloading {row.split(',')[0]}...")
+
+        if needsDownload:
+            #pass
+            processRow(row)
+
+        with open("data/doneExtensions.csv", "a") as log:
+            log.write(row)
         logging.info(f"processed row {num}")
     except Exception as e:
         logging.error(f"Error with row: {row.strip()}: {e}")
