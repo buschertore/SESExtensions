@@ -1,0 +1,1 @@
+data/tempCode/splash/modules/owm-weather.js:2:6:error(detected-generic-api-key):    #apiKey = "7f35f239cbe6b3e671d433635300a261";:Generic API Key detected

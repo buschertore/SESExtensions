@@ -1,0 +1,1 @@
+data/tempCode/better-twitter/options.js:44:2:error(insecure-document-method): container.innerHTML = markup.join("\n");:User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern that can lead to XSS vulnerabilities

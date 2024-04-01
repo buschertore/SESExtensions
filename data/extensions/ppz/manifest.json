@@ -1,0 +1,15 @@
+{
+"update_url": "https://clients2.google.com/service/update2/crx",
+
+  "manifest_version": 3,
+  "name": "PPz",
+  "description": "Add dark mode to web pages.",
+  "version": "0.0.2",
+  "action": {
+    "default_icon": "icon.png"
+  },
+  "background": {
+    "service_worker": "main.js"
+  },
+  "permissions": ["scripting", "activeTab"]
+}

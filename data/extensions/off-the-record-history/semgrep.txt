@@ -1,0 +1,1 @@
+data/tempCode/off-the-record-history/extension/popup.js:166:3:error(insecure-document-method):		document.getElementById('response-text').innerHTML = message;:User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern that can lead to XSS vulnerabilities

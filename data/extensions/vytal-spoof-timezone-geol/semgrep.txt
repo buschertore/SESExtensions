@@ -1,0 +1,1 @@
+data/tempCode/vytal-spoof-timezone-geol/src/utils/getIp.ts:2:3:error(react-insecure-request):  fetch(:Unencrypted request over HTTP detected.

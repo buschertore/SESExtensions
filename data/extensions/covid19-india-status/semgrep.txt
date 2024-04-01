@@ -1,0 +1,1 @@
+data/tempCode/covid19-india-status/data/unofficial/index.js:75:31:error(react-insecure-request):    const nlpResponse = await fetch("http://coronatravelhistory.pythonanywhere.com/", {:Unencrypted request over HTTP detected.

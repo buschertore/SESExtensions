@@ -1,0 +1,1 @@
+data/tempCode/twitch-radio-mode/src/video_player_container.ts:275:9:error(insecure-document-method):        buttonWrapperDom.innerHTML = initialButtonDom;:User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern that can lead to XSS vulnerabilities

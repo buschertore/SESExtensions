@@ -1,0 +1,45 @@
+{
+"update_url": "https://clients2.google.com/service/update2/crx",
+
+  "name": "__MSG_appName__",
+  "description": "__MSG_appDesc__",
+  "version": "1.33",
+  "default_locale": "en",
+  "manifest_version": 3,
+  "icons": {
+    "16": "/icon/icon16.png",
+    "128": "/icon/icon128.png"
+  },
+  "permissions": ["storage", "contextMenus", "scripting", "webNavigation"],
+  "host_permissions": ["*://*/*", "file:///*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "options_page": "options.html",
+  "action": {
+    "default_icon": {
+      "16": "/icon/icon16.png",
+      "128": "/icon/icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "js": ["/scripts/activate-url.js"],
+      "matches": ["*://*/*", "file:///*"]
+    }
+  ],
+  "commands": {
+    "open-image-viewer": {
+      "suggested_key": {
+        "default": "Alt+1"
+      },
+      "description": "__MSG_view_images_in_image_viewer__"
+    },
+    "open-image-viewer-without-size-filter": {
+      "suggested_key": {
+        "default": "Alt+Shift+1"
+      },
+      "description": "__MSG_view_all_images_in_image_viewer__"
+    }
+  }
+}

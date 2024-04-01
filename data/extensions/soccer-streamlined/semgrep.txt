@@ -1,0 +1,2 @@
+data/tempCode/soccer-streamlined/lib/app.ts:50:7:error(insecure-document-method):      matchTitleSpan.innerHTML = match.title;:User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern that can lead to XSS vulnerabilities
+data/tempCode/soccer-streamlined/lib/app.ts:138:5:error(insecure-document-method):    DomHelper.threadInfoDiv.innerHTML = threadInfo.titleHtml;:User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern that can lead to XSS vulnerabilities

@@ -1,0 +1,1 @@
+data/tempCode/screenshot-youtube/extension/options.html:44:7:warning(plaintext-http-link):<p>by <a href="http://futuremillennium.com" target="_blank">Zdeněk Gromnica a.k.a FutureMillennium</a></p>:This link points to a plaintext HTTP URL. Prefer an encrypted HTTPS URL if possible.

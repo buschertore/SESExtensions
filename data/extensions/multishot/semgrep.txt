@@ -1,0 +1,2 @@
+data/tempCode/multishot/storage.js:434:17:error(insecure-document-method):                dragSourceNode.innerHTML = preset.innerHTML;:User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern that can lead to XSS vulnerabilities
+data/tempCode/multishot/storage.js:435:17:error(insecure-document-method):                preset.innerHTML = event.dataTransfer.getData('text/html');:User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern that can lead to XSS vulnerabilities

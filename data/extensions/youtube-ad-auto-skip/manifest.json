@@ -1,0 +1,35 @@
+{
+"update_url": "https://clients2.google.com/service/update2/crx",
+
+	"content_scripts": [ {
+		"all_frames": true,
+		"exclude_globs": [  ],
+		"include_globs": [ "*youtube.com*" ],
+		"css": [],
+		"js": [ "includes/jquery-3.7.1.min.js", "includes/youtube.js", "includes/jquery.hotkeys.js" ],
+		"matches": [ "*://*.youtube.com/*" ],
+		"run_at": "document_start"
+	} ],
+	"description": "Automatically skip ads after X seconds",
+	"icons": {
+		"128": "icons/icon.png"
+	},   
+	"manifest_version": 3,
+	"name": "YouTube Ad Auto-Skip",
+	"short_name": "YT Ad Auto-Skip",
+	"options_page": "options.html",
+	"permissions": [
+		"storage"		
+	],		
+	"version": "1.4.10",
+	"web_accessible_resources": [{
+		"matches": [ "*://*.youtube.com/*" ],
+		"resources": [
+			"icons/icon.png",
+			"includes/jquery-3.7.1.min.js",
+			"includes/youtube.js",
+			"includes/jquery-3.7.1.min.map",
+			"includes/jquery.hotkeys.js"
+		]
+	}]
+}

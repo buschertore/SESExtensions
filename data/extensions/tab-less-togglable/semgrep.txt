@@ -1,0 +1,1 @@
+data/tempCode/tab-less-togglable/app/scripts/chromereload.js:9:33:error(detect-insecure-websocket):var connection = new WebSocket('ws://' + LIVERELOAD_HOST + LIVERELOAD_PORT + '/livereload');:Insecure WebSocket Detected. WebSocket Secure (wss) should be used for all WebSocket connections.

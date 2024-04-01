@@ -1,0 +1,21 @@
+{
+"update_url": "https://clients2.google.com/service/update2/crx",
+
+  "manifest_version": 2,
+  "name": "SVG to Base64",
+  "description": "Convert SVG to Base64.",
+  "version": "0.0.2",
+  "browser_action": {
+    "default_icon": {
+      "16": "/assets/img/16x16.png",
+      "48": "/assets/img/48x48.png",
+      "128": "/assets/img/128x128.png"
+    },
+    "default_popup": "index.html"
+  },
+  "icons": {
+    "16": "/assets/img/16x16.png",
+    "48": "/assets/img/48x48.png",
+    "128": "/assets/img/128x128.png"
+  }
+}

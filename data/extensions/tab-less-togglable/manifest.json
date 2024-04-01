@@ -1,0 +1,41 @@
+{
+"update_url": "https://clients2.google.com/service/update2/crx",
+
+  "name": "__MSG_appName__",
+  "version": "1.1.2",
+  "manifest_version": 3,
+  "description": "__MSG_appDesc__",
+  "icons": {
+    "48": "images/tabless-48.png",
+    "128": "images/tabless-128.png"
+  },
+  "default_locale": "en",
+  "background": {
+    "service_worker": "scripts/background.js",
+    "persistant": true
+  },
+  "action": {
+    "default_icon": {
+      "16": "images/tabless-16.png",
+      "19": "images/tabless-19.png",
+      "32": "images/tabless-32.png",
+      "38": "images/tabless-38.png",
+      "64": "images/tabless-64.png"
+    },
+    "default_title": "__MSG_actionName__"
+  },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": "Alt+O",
+      "description": "__MSG_commandDesc__",
+      "global": "true"
+    }
+  },
+  "permissions": [
+    "storage",
+    "scripting"
+  ],
+  "host_permissions": [
+    "*://*/*"
+  ]
+}

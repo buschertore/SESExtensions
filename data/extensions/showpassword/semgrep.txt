@@ -1,0 +1,1 @@
+data/tempCode/showpassword/public_html/options.js:24:3:error(insecure-document-method):  document.getElementById(name).innerHTML = chrome.i18n.getMessage(name):User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern that can lead to XSS vulnerabilities

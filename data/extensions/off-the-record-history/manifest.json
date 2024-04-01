@@ -1,0 +1,22 @@
+{
+"update_url": "https://clients2.google.com/service/update2/crx",
+
+  "manifest_version": 3,
+  "name": "Off The Record History",
+  "version": "0.4.1",
+  "description": "Track your browsing history in incognito mode. Maintain your history for up to 7 days.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Off The Record History",
+    "default_popup": "popup.html"
+  },
+  "permissions": ["storage", "unlimitedStorage", "tabs"],
+  "incognito": "split"
+}

@@ -1,0 +1,1 @@
+data/tempCode/link-roamer/src/api/index.ts:67:17:warning(direct-response-write):  response.send(JSON.stringify(results)):Detected directly writing to a Response object from user-defined input. This bypasses any HTML escaping and may expose your application to a Cross-Site-scripting (XSS) vulnerability. Instead, use 'resp.render()' to render safely escaped HTML.

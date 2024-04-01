@@ -1,0 +1,2 @@
+data/tempCode/letterboxd-text-formatter/scripts/formatting.js:47:9:error(insecure-document-method):        btn.innerHTML = icon;:User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern that can lead to XSS vulnerabilities
+data/tempCode/letterboxd-text-formatter/scripts/formatting.js:181:13:error(insecure-document-method):            p.innerHTML= str;:User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern that can lead to XSS vulnerabilities

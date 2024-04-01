@@ -1,0 +1,1 @@
+data/tempCode/github-html-preview/src/global/etc/tag.ts:6:17:error(insecure-document-method):                btnGroup.innerHTML += `:User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern that can lead to XSS vulnerabilities

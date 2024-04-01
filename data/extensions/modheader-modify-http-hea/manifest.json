@@ -1,0 +1,90 @@
+{
+"update_url": "https://clients2.google.com/service/update2/crx",
+
+  "manifest_version": 2,
+  "name": "ModHeader - Modify HTTP headers",
+  "version": "6.0.3",
+  "description": "Modify HTTP request headers, response headers, and redirect URLs",
+  "short_name": "ModHeader",
+  "default_locale": "en",
+  "homepage_url": "https://modheader.com/",
+  "background": {
+    "scripts": [
+      "assets/background-UwB5_zqZ.js"
+    ]
+  },
+  "content_scripts": [
+    {
+      "js": [
+        "assets/content_script-EldOSLIJ.js"
+      ],
+      "matches": [
+        "<all_urls>"
+      ],
+      "run_at": "document_end"
+    }
+  ],
+  "browser_action": {
+    "default_icon": "images/icon.png",
+    "default_title": "ModHeader",
+    "default_popup": "popup.html"
+  },
+  "icons": {
+    "16": "images/icon_16.png",
+    "48": "images/icon_48.png",
+    "128": "images/icon_128.png"
+  },
+  "incognito": "spanning",
+  "permissions": [
+    "alarms",
+    "contextMenus",
+    "storage",
+    "webRequest",
+    "webRequestBlocking",
+    "<all_urls>"
+  ],
+  "optional_permissions": [
+    "contentSettings",
+    "browsingData"
+  ],
+  "web_accessible_resources": [
+    "images/*",
+    "chunk-profile-hook-bXv9yT-f.js",
+    "chunk-content_script_app-tKfSXoyl.js",
+    "chunk-App-IIEZM_PY.js",
+    "js/service/content_script.js"
+  ],
+  "externally_connectable": {
+    "matches": [
+      "*://modheader.com/*"
+    ]
+  },
+  "storage": {
+    "managed_schema": "schema.json"
+  },
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+H"
+      }
+    },
+    "toggle_pause": {
+      "description": "Toggle pause/resume",
+      "suggested_key": {
+        "default": "Alt+Shift+P"
+      }
+    },
+    "switch_to_profile_1": {
+      "description": "Switch to 1st profile"
+    },
+    "switch_to_profile_2": {
+      "description": "Switch to 2nd profile"
+    },
+    "switch_to_profile_3": {
+      "description": "Switch to 3rd profile"
+    },
+    "switch_to_profile_4": {
+      "description": "Switch to 4th profile"
+    }
+  }
+}

@@ -1,0 +1,1 @@
+data/tempCode/shoot-the-messenger/popup.js:19:7:error(insecure-document-method):      document.getElementById('LastCleared').innerHTML =:User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern that can lead to XSS vulnerabilities

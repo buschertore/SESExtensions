@@ -1,0 +1,1 @@
+data/tempCode/shutterfly-address-book-e/src/content.js:15:5:error(insecure-document-method):    container.innerHTML = exportHtml;:User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern that can lead to XSS vulnerabilities

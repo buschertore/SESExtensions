@@ -1,0 +1,48 @@
+{
+"update_url": "https://clients2.google.com/service/update2/crx",
+
+	"manifest_version": 3,
+	"name": "EZProxy Redirect",
+	"description": "Quickly reload pages through your library's EZProxy.",
+	"version": "22",
+	"author": "Tom Wambold <tom5760@gmail.com>",
+	"homepage_url": "https://github.com/tom5760/chrome-ezproxy",
+	"background": {
+		"type": "module",
+		"service_worker": "background.js"
+	},
+	"options_ui": {
+		"page": "options.html",
+		"open_in_tab": false
+	},
+	"permissions": [
+		"activeTab",
+		"contextMenus",
+		"storage"
+	],
+	"optional_permissions": [
+		"clipboardWrite",
+		"scripting"
+	],
+	"host_permissions": [
+		"https://libproxy-db.org/proxies.json"
+	],
+	"commands": {
+		"_execute_action": {
+			"description": "Reload the current page through EZProxy."
+		}
+	},
+	"icons": {
+		"16": "icon16.png",
+		"48": "icon48.png",
+		"128": "icon128.png"
+	},
+	"action": {
+		"default_icon": {
+			"16": "icon16.png",
+			"48": "icon48.png",
+			"128": "icon128.png"
+		},
+		"default_title": "Reload through EZProxy"
+	}
+}

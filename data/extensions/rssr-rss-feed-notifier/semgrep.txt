@@ -1,0 +1,2 @@
+data/tempCode/rssr-rss-feed-notifier/options.html:53:20:warning(plaintext-http-link):        Created by <a href="http://rubenmedina.com">Ruben Medina</a><br><br>:This link points to a plaintext HTTP URL. Prefer an encrypted HTTPS URL if possible.
+data/tempCode/rssr-rss-feed-notifier/options.html:54:19:warning(plaintext-http-link):        Thanks to <a href="http://rubaxa.github.io/Sortable/">Sortable</a>:This link points to a plaintext HTTP URL. Prefer an encrypted HTTPS URL if possible.

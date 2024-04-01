@@ -1,0 +1,1 @@
+data/tempCode/corona-tracker/src/background.js:298:10:error(react-insecure-request):  return axios:Unencrypted request over HTTP detected.

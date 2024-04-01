@@ -1,0 +1,1 @@
+data/tempCode/location-guard/src/faq.html:150:6:warning(plaintext-http-link):					<a href="http://www.stronati.org/" target="_blank">Marco Stronati</a>.</p>:This link points to a plaintext HTTP URL. Prefer an encrypted HTTPS URL if possible.

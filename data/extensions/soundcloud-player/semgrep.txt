@@ -1,0 +1,2 @@
+data/tempCode/soundcloud-player/src/popup/popup.js:141:3:error(insecure-document-method):  $('#controller-body')[0].innerHTML = defaultController;:User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern that can lead to XSS vulnerabilities
+data/tempCode/soundcloud-player/src/popup/popup.js:147:3:error(insecure-document-method):  $('#controller-body')[0].innerHTML = compactController;:User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern that can lead to XSS vulnerabilities

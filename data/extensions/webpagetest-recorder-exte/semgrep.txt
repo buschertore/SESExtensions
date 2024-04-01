@@ -1,0 +1,2 @@
+data/tempCode/webpagetest-recorder-exte/src/Replay.js:48:9:error(insecure-document-method):        formOption.innerHTML = opt.text.text;:User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern that can lead to XSS vulnerabilities
+data/tempCode/webpagetest-recorder-exte/src/Replay.js:429:3:error(insecure-document-method):  document.body.innerHTML = initHTML;:User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern that can lead to XSS vulnerabilities

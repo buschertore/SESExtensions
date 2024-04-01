@@ -1,0 +1,2 @@
+data/tempCode/atarashii-new-tab-page/marketing/screenshots.js:14:9:warning(playwright-goto-injection):  await page.goto(`file://${extPath}`):If unverified user data can reach the `goto` method it can result in Server-Side Request Forgery vulnerabilities
+data/tempCode/atarashii-new-tab-page/marketing/screenshots.js:18:11:warning(playwright-goto-injection):    await page.goto(`file://${extPath}`, { waitUntil: "networkidle0" }):If unverified user data can reach the `goto` method it can result in Server-Side Request Forgery vulnerabilities

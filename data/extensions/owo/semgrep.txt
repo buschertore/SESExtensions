@@ -1,0 +1,2 @@
+data/tempCode/owo/popup.js:12:3:error(insecure-document-method):  document.querySelector('.help').innerHTML =:User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern that can lead to XSS vulnerabilities
+data/tempCode/owo/popup.js:15:3:error(insecure-document-method):  document.querySelector('.success h2').innerHTML = chrome.i18n.getMessage(:User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern that can lead to XSS vulnerabilities

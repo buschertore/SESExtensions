@@ -1,0 +1,1 @@
+data/tempCode/overleaf-copilot/src/sidePanel.ts:18:3:error(insecure-document-method):  sidePanel.innerHTML = await (await fetch(sidePanelUrl)).text();:User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern that can lead to XSS vulnerabilities

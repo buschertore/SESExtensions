@@ -1,0 +1,14 @@
+{
+"update_url": "https://clients2.google.com/service/update2/crx",
+
+    "manifest_version": 3,
+    "version": "2.2",
+    "name": "State Saver For Chrome",
+    "action": {
+        "default_popup": "index.html",
+        "default_icon": "icon.png"
+ },
+    "permissions": [
+        "tabs"
+    ]
+}

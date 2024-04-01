@@ -1,0 +1,2 @@
+data/tempCode/filter-jobs-feeds/main/main.js:55:5:error(insecure-document-method):    elems.description.innerHTML = description;:User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern that can lead to XSS vulnerabilities
+data/tempCode/filter-jobs-feeds/settings/settings.js:104:5:error(insecure-document-method):    elem.innerHTML = `:User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern that can lead to XSS vulnerabilities

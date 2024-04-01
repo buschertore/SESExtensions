@@ -1,0 +1,50 @@
+{
+"update_url": "https://clients2.google.com/service/update2/crx",
+
+  "manifest_version": 3,
+
+  "name": "GrowthBook DevTools",
+  "description": "GrowthBook's Visual Editor and SDK Debugger",
+  "version": "0.3.6",
+
+  "options_ui": {
+    "page": "options.html"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["js/content_script.js"]
+    }
+  ],
+
+  "web_accessible_resources": [
+    {
+      "matches": ["<all_urls>"],
+
+      "resources": [
+        "js/devtools_embed_script.js",
+        "js/visual_editor.js",
+        "js/logo192.png",
+        "js/create-api-key.png",
+        "options.html"
+      ]
+    }
+  ],
+
+  "background": {
+    "service_worker": "js/background.js"
+  },
+
+  "permissions": ["storage"],
+
+  "host_permissions": ["<all_urls>"],
+
+  "icons": {
+    "16": "logo192.png",
+    "48": "logo192.png",
+    "128": "logo192.png"
+  },
+
+  "devtools_page": "devtools.html"
+}

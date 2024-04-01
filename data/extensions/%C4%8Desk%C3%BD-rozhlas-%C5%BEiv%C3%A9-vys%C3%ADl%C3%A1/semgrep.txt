@@ -1,0 +1,1 @@
+data/tempCode/%C4%8Desk%C3%BD-rozhlas-%C5%BEiv%C3%A9-vys%C3%ADl%C3%A1/assets/js/app.js:138:4:error(insecure-document-method):			element.innerHTML = chrome.i18n.getMessage(element.getAttribute('i18n'));:User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern that can lead to XSS vulnerabilities

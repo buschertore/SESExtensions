@@ -1,0 +1,60 @@
+{
+"update_url": "https://clients2.google.com/service/update2/crx",
+
+  "name": "Encryptor",
+  "description": "Encryptor adds support for the encryption layer currently not supported in major Web3 wallets.",
+  "version": "0.0.5",
+  "manifest_version": 3,
+  "icons": {
+    "16": "icons/logo-16.png",
+    "32": "icons/logo-32.png",
+    "48": "icons/logo-48.png",
+    "128": "icons/logo-128.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icons/logo-48.png"
+  },
+  "background": {
+    "service_worker": "service-worker-loader.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "js": [
+        "assets/content-script-loader.chunk-73b22ebe.3ec9f5b8.js"
+      ],
+      "matches": [
+        "<all_urls>"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "resources": [
+        "icons/logo-16.png",
+        "icons/logo-32.png",
+        "icons/logo-48.png",
+        "icons/logo-128.png"
+      ],
+      "use_dynamic_url": false
+    },
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "resources": [
+        "assets/chunk-256d88cf.js",
+        "assets/chunk-73b22ebe.js"
+      ],
+      "use_dynamic_url": true
+    }
+  ],
+  "permissions": [
+    "storage"
+  ]
+}

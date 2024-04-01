@@ -1,0 +1,2 @@
+data/tempCode/animated-gif-capture/options/options.html:289:5:warning(plaintext-http-link):    <a href="http://demouth.net/">@demouth</a>:This link points to a plaintext HTTP URL. Prefer an encrypted HTTPS URL if possible.
+data/tempCode/animated-gif-capture/options/options.html:293:7:warning(plaintext-http-link):      <a href="http://jquery.com/">jQuery</a>:This link points to a plaintext HTTP URL. Prefer an encrypted HTTPS URL if possible.

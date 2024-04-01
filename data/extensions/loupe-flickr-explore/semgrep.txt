@@ -1,0 +1,2 @@
+data/tempCode/loupe-flickr-explore/assets/javascripts/index.js:57:23:error(detected-generic-api-key):                      api_key: '181747ad9af6cc125a5c7c034463129a',:Generic API Key detected
+data/tempCode/loupe-flickr-explore/assets/javascripts/index.js:233:23:error(detected-generic-api-key):                      api_key: "181747ad9af6cc125a5c7c034463129a",:Generic API Key detected

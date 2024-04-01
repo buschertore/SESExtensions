@@ -1,0 +1,61 @@
+{
+"update_url": "https://clients2.google.com/service/update2/crx",
+
+  "name": "Blue Blocker",
+  "description": "Blocks all Twitter Blue verified users on twitter.com",
+  "version": "0.3.5",
+  "manifest_version": 3,
+  "icons": {
+    "128": "icon/icon-128.png"
+  },
+  "action": {
+    "default_popup": "src/popup/index.html",
+    "default_icon": "icon/icon.png"
+  },
+  "background": {
+    "service_worker": "service-worker-loader.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "js": [
+        "assets/content-script-loader.chunk-dbdd324b.fb98325d.js"
+      ],
+      "matches": [
+        "*://*.twitter.com/*",
+        "*://twitter.com/*"
+      ]
+    }
+  ],
+  "permissions": [
+    "storage",
+    "unlimitedStorage"
+  ],
+  "web_accessible_resources": [
+    {
+      "matches": [
+        "*://*.twitter.com/*",
+        "*://twitter.com/*"
+      ],
+      "resources": [
+        "src/injected/*",
+        "icon/*"
+      ],
+      "use_dynamic_url": false
+    },
+    {
+      "matches": [
+        "*://*.twitter.com/*",
+        "*://twitter.com/*"
+      ],
+      "resources": [
+        "assets/chunk-0ffb5ea2.js",
+        "assets/chunk-f03e43a7.js",
+        "assets/chunk-2cbbcead.js",
+        "assets/chunk-23fedbb7.js",
+        "assets/chunk-dbdd324b.js"
+      ],
+      "use_dynamic_url": true
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+data/tempCode/dotgit/manifest.json:22:6:error(detect-insecure-websocket):    "ws://*/*",:Insecure WebSocket Detected. WebSocket Secure (wss) should be used for all WebSocket connections.

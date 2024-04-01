@@ -1,0 +1,92 @@
+{
+"update_url": "https://clients2.google.com/service/update2/crx",
+
+  "manifest_version": 3,
+  "name": "JadeShip.com Extension",
+  "version": "1.16.1",
+  "description": "(formerly RepArchive Ext) Converts links on reddit and yupoo to your favorite shopping agent; enriched with price info and QC pics",
+  "icons": {
+    "48": "public/icon.png"
+  },
+  "action": {
+    "default_icon": "public/icon.png",
+    "default_popup": "./js/index.html"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "public/agent_logos/*",
+        "public/platform_logos/*"
+      ],
+      "matches": [
+        "*://*.reddit.com/*",
+        "*://*.x.yupoo.com/*",
+        "*://*.wegobuy.com/*",
+        "*://*.superbuy.com/*",
+        "*://*.sugargoo.com/*",
+        "*://*.cssbuy.com/*",
+        "*://*.pandabuy.com/*",
+        "*://*.hagobuy.com/*",
+        "*://*.kameymall.com/*",
+        "*://*.ezbuycn.com/*",
+        "*://*.cnfans.com/*",
+        "*://*.taobao.com/*",
+        "*://*.weidian.com/*",
+        "*://*.1688.com/*",
+        "*://*.tmall.com/*"
+      ]
+    }
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.reddit.com/*",
+        "*://*.x.yupoo.com/*"
+      ],
+      "js": [
+        "./js/content_script.js"
+      ],
+      "run_at": "document_end"
+    },
+    {
+      "matches": [
+        "*://*.wegobuy.com/*",
+        "*://*.superbuy.com/*",
+        "*://*.sugargoo.com/*",
+        "*://*.cssbuy.com/*",
+        "*://*.pandabuy.com/*",
+        "*://*.hagobuy.com/*",
+        "*://*.kameymall.com/*",
+        "*://*.ezbuycn.com/*",
+        "*://*.cnfans.com/*",
+        "*://*.taobao.com/*",
+        "*://*.weidian.com/*",
+        "*://*.1688.com/*",
+        "*://*.tmall.com/*"
+      ],
+      "js": [
+        "./js/toolbar.js"
+      ],
+      "run_at": "document_end"
+    }
+  ],
+  "background": {
+    "service_worker": "./js/background.js"
+  },
+  "host_permissions": [
+    "*://*.wegobuy.com/*",
+    "*://*.superbuy.com/*",
+    "*://*.sugargoo.com/*",
+    "*://*.cssbuy.com/*",
+    "*://*.pandabuy.com/*",
+    "*://*.hagobuy.com/*",
+    "*://*.kameymall.com/*",
+    "*://*.ezbuycn.com/*",
+    "*://*.cnfans.com/*"
+  ],
+  "permissions": [
+    "storage",
+    "webNavigation",
+    "scripting"
+  ]
+}

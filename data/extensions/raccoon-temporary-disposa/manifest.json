@@ -1,0 +1,41 @@
+{
+"update_url": "https://clients2.google.com/service/update2/crx",
+
+  "manifest_version": 3,
+  "name": "Raccoon: Temporary Disposable Emails.",
+  "version": "0.01",
+  "description": "Protect your email, and personal data with Raccoon.",
+  "permissions": [
+    "activeTab"
+  ],
+  "host_permissions": [
+    "https://www.1secmail.com/*"
+  ],
+  "background": {
+    "service_worker": "src/js/background.js"
+  },
+  "action": {
+    "default_icon": {
+      "16": "/src/img/icon/icon16.png",
+      "48": "/src/img/icon/icon48.png",
+      "128": "/src/img/icon/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "/src/img/icon/icon16.png",
+    "48": "/src/img/icon/icon48.png",
+    "128": "/src/img/icon/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["src/js/content.js"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["index.html", "src/css/style.css", "src/js/main.js"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

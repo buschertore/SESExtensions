@@ -1,0 +1,2 @@
+data/tempCode/amazon-wish-list-total/main.js:52:3:error(insecure-document-method):  el.innerHTML = parts.join('').trim();:User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern that can lead to XSS vulnerabilities
+data/tempCode/amazon-wish-list-total/main.js:434:5:error(insecure-document-method):    $root.innerHTML = render(attrs).outerHTML;:User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern that can lead to XSS vulnerabilities

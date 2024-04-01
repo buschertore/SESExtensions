@@ -1,0 +1,33 @@
+{
+"update_url": "https://clients2.google.com/service/update2/crx",
+
+  "name": "AdBlock Pro - Open Source Ad Blocker",
+  "version": "1.0.1",
+  "manifest_version": 3,
+  "description": "Powerful Open Source Ad Blocker: Blocks ads on websites, with ongoing development for new features. Best of all? It's always free.",
+  "permissions": [
+    "declarativeNetRequest"
+  ],
+  "action": {
+    "default_popup": "",
+    "default_icon": {
+      "16": "icon.png",
+      "48": "icon.png",
+      "128": "icon.png"
+    }
+  },
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "ruleset_1",
+        "enabled": true,
+        "path": "rules.json"
+      }
+    ]
+  },
+  "icons": {
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+}
+}

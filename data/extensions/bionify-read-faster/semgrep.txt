@@ -1,0 +1,2 @@
+data/tempCode/bionify-read-faster/src/utils.js:45:9:error(insecure-document-method):        style.innerHTML =:User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern that can lead to XSS vulnerabilities
+data/tempCode/bionify-read-faster/src/utils.js:171:11:error(insecure-document-method):          newNode.innerHTML = bionifyifyText(sanitize(node.textContent));:User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern that can lead to XSS vulnerabilities

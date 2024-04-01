@@ -1,0 +1,47 @@
+{
+"update_url": "https://clients2.google.com/service/update2/crx",
+
+  "name": "__MSG_extension_name__",
+  "description": "__MSG_extension_description__",
+  "version": "8.27.1.40205",
+  "author": "Sharkiller",
+  "manifest_version": 3,
+  "minimum_chrome_version": "100",
+  "default_locale": "en",
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_icon": "play-on.png",
+    "default_title": "__MSG_extension_name__\n__MSG_extension_on__",
+    "default_popup": "pages/settings.html"
+  },
+  "options_ui": {
+    "page": "pages/settings.html"
+  },
+  "permissions": [
+    "declarativeNetRequest",
+    "storage"
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "pages/player.html",
+        "iptv/player.html",
+        "play-on.png"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ],
+  "icons": {
+    "128": "play-on.png"
+  },
+  "host_permissions": [
+    "*://*/*.m3u*",
+    "*://*/*.mpd*",
+    "file:///*/*.m3u"
+  ],
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAg5uoR2Nc2Mnho8gnRaf1u9boJ7vAVYRPbJj3GKK/nUUGoS0TqQvkX02E+TAE3Qv2tNuwyxyIXTKly1U+YgLremC6+PSrzwwjK7Gzx1cQyeKYaaNoneDQpozzlQsGSNwOpmdy6eiR7+IjsFXz45SmxPYjCFlNMtnKu3UhxqDmxpGG76I7uDUOAlBTK6TJF4GjL1murkQFuf5Wc0leEvCLYAEmGxpKYCjd+/LDlDWdtWPVeb3mySEbj4OUg+3xUC2p6MqnxDfIINoWSQIxhIruRiqJOQ0Wli9dnS9pjHfc+RNxxtInZ0FkoFryOBNG9u8eVbgynwyRQKRJfZjolIwnHwIDAQAB"
+}

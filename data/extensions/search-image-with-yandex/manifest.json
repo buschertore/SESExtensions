@@ -1,0 +1,19 @@
+{
+"update_url": "https://clients2.google.com/service/update2/crx",
+
+  "name": "__MSG_name__",
+  "description": "__MSG_description__",
+  "short_name": "__MSG_short__",
+  "version": "2.0.1",
+  "permissions": ["contextMenus", "scripting", "activeTab"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16": "images/icon_16.png",
+    "48": "images/icon_48.png",
+    "128": "images/icon_128.png"
+  },
+  "default_locale": "en",
+  "manifest_version": 3
+}

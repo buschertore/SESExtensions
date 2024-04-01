@@ -1,0 +1,34 @@
+{
+"update_url": "https://clients2.google.com/service/update2/crx",
+
+  "manifest_version": 3,
+  "name": "NameInserter",
+  "description": "NameInserter is a free, open-source Chrome Extension that instantly adds the first name of a person you are replying to.",
+  "version": "1.1",
+  "action": {
+    "default_icon": "img/nameInserter_logo_128.png",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16": "img/nameInserter_logo_16.png",
+    "48": "img/nameInserter_logo_48.png",
+    "128": "img/nameInserter_logo_128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://twitter.com/*"],
+      "js": ["scripts/nameInserter.js"],
+      "css": ["styles/styles.css"],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [ "img/nameInserter_logo_square_128x128_padding.png" ],
+      "matches": [ "https://twitter.com/*" ]
+    }
+  ]
+}

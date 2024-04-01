@@ -1,0 +1,1 @@
+data/tempCode/calm-twitter/app/scripts/popup.ts:15:7:error(insecure-document-method):      obj.innerHTML = valNewH;:User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern that can lead to XSS vulnerabilities

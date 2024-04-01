@@ -1,0 +1,2 @@
+data/tempCode/google-enhancer/global.js:324:3:error(insecure-document-method):  styleTag.innerHTML = cssString;:User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern that can lead to XSS vulnerabilities
+data/tempCode/google-enhancer/page/option/option.js:169:5:error(insecure-document-method):    this.ele.innerHTML = `:User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern that can lead to XSS vulnerabilities

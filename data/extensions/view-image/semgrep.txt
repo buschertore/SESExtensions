@@ -1,0 +1,2 @@
+data/tempCode/view-image/js/content-script.js:24:21:error(insecure-document-method):    if (msg != tag) obj.innerHTML = msg;:User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern that can lead to XSS vulnerabilities
+data/tempCode/view-image/js/localise.js:11:21:error(insecure-document-method):    if (msg != tag) obj.innerHTML = msg;:User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern that can lead to XSS vulnerabilities

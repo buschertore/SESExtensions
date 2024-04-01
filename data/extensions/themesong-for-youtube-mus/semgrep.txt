@@ -1,0 +1,1 @@
+data/tempCode/themesong-for-youtube-mus/apps/extension/src/app/Palette/logPalette.js:5:5:info(unsafe-formatstring):    `%c:Detected string concatenation with a non-literal variable in a util.format / console.log function. If an attacker injects a format specifier in the string, it will forge the log message. Try to use constant values for the format string.

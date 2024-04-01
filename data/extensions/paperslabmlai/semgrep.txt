@@ -1,0 +1,2 @@
+data/tempCode/paperslabmlai/common/paper_item.ts:97:25:error(insecure-document-method):                        title.innerHTML = this.item.paperTitle:User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern that can lead to XSS vulnerabilities
+data/tempCode/paperslabmlai/common/paper_item.ts:101:25:error(insecure-document-method):                        desc.innerHTML = this.item.metaAbstract:User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern that can lead to XSS vulnerabilities

@@ -1,0 +1,51 @@
+{
+"update_url": "https://clients2.google.com/service/update2/crx",
+
+  "manifest_version": 3,
+  "name": "__MSG_appName__",
+  "version": "1.3.0",
+  "description": "__MSG_appDesc__",
+  "default_locale": "en",
+  "author": "Kamada Masachika",
+  "permissions": [
+    "storage"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://chat.openai.com/*",
+        "https://poe.com/*",
+        "https://www.phind.com/*",
+        "https://chat.mistral.ai/*",
+        "https://www.chatpdf.com/*",
+        "https://www.perplexity.ai/*"
+      ],
+      "js": ["script.js"]
+    }
+  ],
+  "icons": {
+    "16": "icon/icon16.png",
+    "48": "icon/icon48.png",
+    "128": "icon/icon128.png"
+  },
+  "host_permissions": [
+    "https://chat.openai.com/*",
+    "https://poe.com/*",
+    "https://www.phind.com/*",
+    "https://chat.mistral.ai/*",
+    "https://www.chatpdf.com/*",
+    "https://www.perplexity.ai/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon/icon16.png",
+      "48": "icon/icon48.png",
+      "128": "icon/icon128.png"
+    }
+  }
+}

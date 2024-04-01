@@ -1,0 +1,19 @@
+{
+"update_url": "https://clients2.google.com/service/update2/crx",
+
+  "name": "Dev Mark",
+  "version": "1.0.7",
+  "description": "",
+  "manifest_version": 3,
+  "background": {
+    "service_worker": "background.js"
+  },
+  "options_page": "options.html",
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["content_scripts.js"]
+    }
+  ],
+  "permissions": ["storage"]
+}

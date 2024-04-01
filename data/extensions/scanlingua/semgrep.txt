@@ -1,0 +1,2 @@
+data/tempCode/scanlingua/service_worker/public/fetch.js:154:29:error(react-insecure-request):    const translate = await fetch("http://localhost:8765", {:Unencrypted request over HTTP detected.
+data/tempCode/scanlingua/service_worker/public/fetch.js:214:29:error(react-insecure-request):    const translate = await fetch("http://localhost:8765", {:Unencrypted request over HTTP detected.

@@ -1,0 +1,1 @@
+data/tempCode/svgomg/src/js/page/ui/code-output.js:18:5:error(insecure-document-method):    this._codeEl.innerHTML = await prism.highlight(text);:User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern that can lead to XSS vulnerabilities
