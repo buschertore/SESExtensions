@@ -37,7 +37,7 @@ categoryListProductivity = [
     #"https://chromewebstore.google.com/category/extensions/productivity/communication",
     #"https://chromewebstore.google.com/category/extensions/productivity/education",
     #"https://chromewebstore.google.com/category/extensions/productivity/tools",
-    "https://chromewebstore.google.com/category/extensions/productivity/workflow"
+    #"https://chromewebstore.google.com/category/extensions/productivity/workflow"
 ]
 
 categoryLists = [categoryListProductivity, categoryListLifestyle, categoryListCustom]
@@ -93,9 +93,10 @@ def analyzeCategory(link):
     loadMoreCount = 0
     while loadMoreCount < 16:
         try:
+            loadMoreCount += 1
             driver.find_element(By.CLASS_NAME, "mUIrbf-LgbsSe-OWXEXe-dgl2Hf").click()
             time.sleep(1)
-            loadMoreCount += 1
+            logging.debug(f"Loaded more {loadMoreCount} times")
         except selenium.common.NoSuchElementException as e:
             logging.debug(e)
     time.sleep(1)
