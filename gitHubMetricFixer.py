@@ -68,7 +68,7 @@ def main(argv):
         chromeLinkDict[dataDirName] = chromeLink
 
     args_list = [(subfolder, gitHubLinkDict[subfolder]) for subfolder in subfolders]
-    with Pool(processes=24) as pool:
+    with Pool(processes=36) as pool:
         pool.map(relaunchGitHubMetrics, args_list)
 
 

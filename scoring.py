@@ -164,6 +164,8 @@ def main(argv):
             overallScore = max(0,
                                100 - owaspPenalty - semgrepPenalty - permissionPenalty - activityPenalty - contribPenalty)
             starRating = readStarRatingFile(f"{subfolder}/starRating.txt")
+            if starRating == float(-1):
+                manualWork = "yes"
             users, recommended = readChromeMetrics(f"{subfolder}/chromeMetrics.txt")
             logging.info(f"name: {name} score: {overallScore} of rating: {starRating} | manual work?: {manualWork}")
             """allExtensionScores.append(
@@ -172,10 +174,28 @@ def main(argv):
                                activityPenalty=activityPenalty, overallScore=overallScore,
                                starRating=starRating, manualWorkNeeded=manualWork))"""
             #"name,overallScore,starRating,users,recommended,owasp,owaspRaw,semgrep,semgrepRaw,permission,permissionRaw,contributor,contributorRaw,activity,activityRaw,manualWork\n"
-            allLines.append(",".join(
-                [str(name), str(overallScore), str(starRating), str(users), str(recommended), str(owaspPenalty), str(owaspRaw),
-                 str(semgrepPenalty), str(semgrepRaw), str(permissionPenalty), str(permissionRaw), str(contribPenalty),
-                 str(contribRaw), str(activityPenalty), str(activityRaw), str(manualWork)]))
+            allLines.append(
+                ",".join(
+                    [
+                        str(name),
+                        str(overallScore),
+                        str(starRating),
+                        str(users),
+                        str(recommended),
+                        str(owaspPenalty),
+                        str(owaspRaw),
+                        str(semgrepPenalty),
+                        str(semgrepRaw),
+                        str(permissionPenalty),
+                        str(permissionRaw),
+                        str(contribPenalty),
+                        str(contribRaw),
+                        str(activityPenalty),
+                        str(activityRaw),
+                        str(manualWork),
+                    ]
+                )
+            )
         except Exception as e:
             logging.error(e)
             logging.error(f"Error occured while scoring {subfolder}: {e.args} | {type(e)}")

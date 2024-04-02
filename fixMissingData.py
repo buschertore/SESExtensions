@@ -46,7 +46,7 @@ def main(argv):
         chromeLink = nameToRow[name].split(",")[1]
         logging.info(f"Exctracted {chromeLink}")
 
-        allChromePathsAndLinks.append((f"{subfolder}/chromeMetrics.txt", chromeLink))
+        allChromePathsAndLinks.append((f"{subfolder}/starRating.txt", chromeLink))
 
 
 
@@ -81,7 +81,7 @@ def main(argv):
     with Pool(processes=48) as pool:
         pool.map(controller.callProcessRow, fixArgList)"""
 
-    with Pool(processes=24) as pool:
+    with Pool(processes=100) as pool:
         pool.map(writeChromeMetrics, allChromePathsAndLinks)
 
 

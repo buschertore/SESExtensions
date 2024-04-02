@@ -71,7 +71,7 @@ def fetchStarRating(chromeLink: str) -> float:
     options.add_argument("--no-sandbox")
     driver = webdriver.Chrome(options=options)
     driver.get(chromeLink)
-    time.sleep(3)
+    time.sleep(10)
 
     scoreElement = driver.find_element(By.CLASS_NAME, "Vq0ZA")
     score = scoreElement.text
