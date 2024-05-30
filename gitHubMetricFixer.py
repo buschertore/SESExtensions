@@ -34,8 +34,8 @@ def relaunchChromeStoreRatings(listOfDirAndLink) -> None:
             recommended = inFile.readline().split(":")[-1]
     except FileNotFoundError:
         oldUserNumber = 0
-
-
+    # TODO remove again
+    #oldUserNumber = 0
     if oldUserNumber == 0:
         print(f"Regetting chrome metrics for {extensionName}: {chromeLink}")
         numberOfUsers, recommended = ChromeReviews.fetchChromeRatings(chromeLink)
@@ -46,8 +46,8 @@ def relaunchChromeStoreRatings(listOfDirAndLink) -> None:
             outFile.write(f"NumberOfUsers: {numberOfUsers}\n")
             outFile.write(f"isRecommended: {recommended}\n")
     else:
-        #print(f"Skipping chrome store for {extensionName}")
-        pass
+        print(f"Skipping chrome store for {extensionName}")
+        #pass
 
 
 
@@ -67,9 +67,9 @@ def main(argv):
         gitHubLinkDict[dataDirName] = githubLink
         chromeLinkDict[dataDirName] = chromeLink
 
-    args_list = [(subfolder, gitHubLinkDict[subfolder]) for subfolder in subfolders]
+    """    args_list = [(subfolder, gitHubLinkDict[subfolder]) for subfolder in subfolders]
     with Pool(processes=36) as pool:
-        pool.map(relaunchGitHubMetrics, args_list)
+        pool.map(relaunchGitHubMetrics, args_list)"""
 
 
     chromeMetricArgs = [(subfolder, chromeLinkDict[subfolder]) for subfolder in subfolders]

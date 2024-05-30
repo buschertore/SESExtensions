@@ -16,7 +16,7 @@ def scoreSemgrep(file_path: str) -> int:
         with open(file_path, 'r') as file:
             for line in file:
                 # Check if the line starts with '/home/'
-                if line.startswith('/home/'):
+                if line.startswith('data/'):
                     # Check for the presence of 'error' and 'warning' in the line
                     if ':error' in line:
                         total_score += 2
@@ -24,6 +24,7 @@ def scoreSemgrep(file_path: str) -> int:
                         total_score += 0.5
 
     except FileNotFoundError:
+        logging.error(f"No semgrepFile for {file_path}")
         raise ValueError(f"File not found: {file_path}")
 
     # Return the total score
@@ -130,6 +131,12 @@ def readChromeMetrics(chromeMetricFile: str) -> []:
     return [numberOfUsers, recommended]
 
 
+def readManifestVersion(manifestFilePath: str) -> str:
+    rawText = open(manifestFilePath).read()
+    manifestJson = json.loads(rawText)
+    return manifestJson["manifest_version"]
+
+
 def main(argv):
     logging.basicConfig(level=logging.INFO)
 
@@ -167,6 +174,7 @@ def main(argv):
             if starRating == float(-1):
                 manualWork = "yes"
             users, recommended = readChromeMetrics(f"{subfolder}/chromeMetrics.txt")
+            manifestVersion = readManifestVersion(f"{subfolder}/manifest.json")
             logging.info(f"name: {name} score: {overallScore} of rating: {starRating} | manual work?: {manualWork}")
             """allExtensionScores.append(
                 ExtensionScore(name=name, owaspPenalty=owaspPenalty, semgrepPenalty=semgrepPenalty,
@@ -193,6 +201,7 @@ def main(argv):
                         str(activityPenalty),
                         str(activityRaw),
                         str(manualWork),
+                        str(manifestVersion),
                     ]
                 )
             )
@@ -205,7 +214,7 @@ def main(argv):
 
     with open("results.csv", "w") as csvfile:
         #csvfile.write("name,owasp,semgrep,permission,contributor,activity,overallScore,starRating,manualWorkNeeded\n")
-        csvfile.write("name,overallScore,starRating,users,recommended,owasp,owaspRaw,semgrep,semgrepRaw,permission,permissionRaw,contributor,contributorRaw,activity,activityRaw,manualWork\n")
+        csvfile.write("name,overallScore,starRating,users,recommended,owasp,owaspRaw,semgrep,semgrepRaw,permission,permissionRaw,contributor,contributorRaw,activity,activityRaw,manualWork,manifestVersion\n")
         """for score in allExtensionScores:
             csvfile.write(
                 f"{score.name},{score.owaspPenalty},{score.semgrepPenalty},{score.permissionPenalty},{score.contributorPenalty},{score.activityPenalty},{score.overallScore},{score.starRating},{score.manualWorkNeeded}\n")"""
